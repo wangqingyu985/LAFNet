@@ -1,0 +1,40 @@
+"""
+Created by Mr. Qingyu Wang at 14:33 07.03.2025
+E-mail address: 12013027@zju.edu.cn
+"""
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = [1, 4, 7, 10]
+labels = ['AP', 'Half TD+\nAP', 'TD+\nAP', 'TD']
+ap = np.array([1.06048583984375, 0.8342266082763672, 0.8175373077392578, 0.8077621459960938, 0.7891654968261719, 0.7998943328857422, 0.8187294006347656, 0.7860660552978516, 0.7824897766113281, 0.7879734039306641, 0.8282661437988281, 0.7925033569335938, 0.7920265197753906, 0.7951259613037109])
+td_half_ap = np.array([1.4600753784179688, 1.1606216430664062, 1.123189926147461, 1.1112689971923828, 1.0921955108642578, 1.0983943939208984, 1.110076904296875, 1.0895729064941406, 1.1005401611328125, 1.0876655578613281, 1.1031627655029297, 1.0881423950195312, 1.0914802551269531, 1.0945796966552734])
+td_ap = np.array([1.2156963348388672, 1.0917186737060547, 1.0666847229003906, 1.0843276977539062, 1.1038780212402344, 1.0728836059570312, 1.069784164428711, 1.0881423950195312, 1.058340072631836, 1.0771751403808594, 1.6353130340576172, 1.4104843139648438, 1.0802745819091797, 1.0838508605957031])
+td = np.array([1.088857650756836, 0.8616447448730469, 0.8268356323242188, 0.8349418640136719, 0.8087158203125, 0.8287429809570312, 0.8115768432617188, 0.858306884765625, 0.8242130279541016, 0.8065700531005859, 0.8044242858886719, 0.8175373077392578, 0.89263916015625, 0.8058547973632812])
+
+all_data = [ap, td_half_ap, td_ap, td]
+
+plt.figure(figsize=(6, 4.5), dpi=600)
+
+axis_font = {'weight': 'bold', 'size': 14}
+title_font = {'weight': 'bold', 'size': 15}
+plt.rcParams.update({'font.size': 13})
+plt.rcParams["font.weight"] = "bold"
+
+colors_pale = ['#66c5cc', '#f6cf71', '#f89c74', '#dcb0f2']
+
+box = plt.boxplot(all_data, patch_artist=True, positions=[1, 4, 7, 10],
+                  showmeans=False, widths=1.4, sym="k+")
+for patch, color in zip(box['boxes'], colors_pale):
+    patch.set_facecolor(color)
+
+plt.ylabel("Time (ms)", fontdict=axis_font)
+plt.xlim(0, 11)
+plt.ylim(0.6, 1.8)
+plt.xticks(ticks=x, labels=labels)
+ax = plt.gca()
+ax.spines['bottom'].set_linewidth(1.5)
+ax.spines['left'].set_linewidth(1.5)
+ax.spines['right'].set_linewidth(1.5)
+ax.spines['top'].set_linewidth(1.5)
+plt.show()
